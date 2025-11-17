@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أخبار التكنولوجيا اليوم</title>
+  <link rel="stylesheet" href="css/style.css">
+  <Style>
+  :root {
+  --primary: #0077ff;
+  --bg: #f9fafc;
+  --text: #222;
+  --shadow: 0 6px 20px rgba(0,0,0,0.1);
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ====== الشريط العلوي ====== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 40px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  font-size: 28px;
+  color: var(--primary);
+}
+.logo span { color: #000; }
+nav a {
+  text-decoration: none;
+  color: #555;
+  margin: 0 10px;
+  font-weight: 500;
+}
+nav a:hover, nav a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 4px;
+}
+
+/* ====== الخبر الرئيسي ====== */
+.main-news {
+  background: white;
+  margin: 30px auto;
+  width: 90%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.main-news img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+}
+.main-news-content {
+  padding: 20px;
+  text-align: center;
+}
+.main-news-content h2 {
+  color: var(--primary);
+}
+.main-news-content p {
+  color: #000;
+  font-weight: bold;
+}
+
+/* ====== شبكة الأخبار ====== */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 5% 60px;
+}
+.news-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.news-card:hover {
+  transform: translateY(-5px);
+}
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.news-card .content {
+  padding: 15px;
+}
+.news-card h3 {
+  margin: 5px 0;
+  color: var(--primary);
+}
+.news-card p {
+  color: #555;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ====== النافذة المنبثقة ====== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: var(--radius);
+  position: relative;
+  box-shadow: var(--shadow);
+}
+#close-modal {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin: 10px 0;
+}
+
+
+/* ====== الفوتر ====== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+<body dir="rtl">
+
+  <!-- ====== الشريط العلوي ====== -->
+  <header class="header">
+    <h1 class="logo"><span>اخبار التكنولوجيا</span></h1>
+    <nav>
+      <a href="#" class="nav-link active" data-category="home">الرئيسية</a>
+      <a href="#" class="nav-link" data-category="ai">الذكاء الاصطناعي</a>
+      <a href="#" class="nav-link" data-category="phones">الهواتف</a>
+      <a href="#" class="nav-link" data-category="innovation">الابتكارات</a>
+      <a href="#" class="nav-link" data-category="about">عن الموقع</a>
+    </nav>
+  </header>
+
+  <!-- ====== الخبر الرئيسي ====== -->
+  <section class="main-news" id="main-news">
+    <img src="NJ93.JPG">
+    <div class="main-news-content">
+      <h2>آخر تطورات التكنولوجيا حول العالم</h2>
+      <p>تابع أحدث أخبار التقنية من الذكاء الاصطناعي، الهواتف، والابتكارات الحديثة من حول العالم.</p>
+    </div>
+   
+  </section>
+
+  <!-- ====== الأخبار ====== -->
+  <section class="news-grid" id="news-container">
+    <!-- الكروت تظهر هنا -->
+  </section>
+
+  <!-- ====== نافذة عرض الخبر ====== -->
+  <div class="modal" id="news-modal">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <h2 id="modal-title"></h2>
+      <img id="modal-img" alt="">
+      <p id="modal-body"></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 جميع الحقوق محفوظة لموقع </p>
+  </footer>
+
+  <script >
+
+
+
+
+
+
+
+
+const newsData = {
+  home: [
+   
+  ],
+  ai: [
+    {
+      title: "     الروبوتات الصناعية",
+      image: "CHAR.PNG",
+      body: "       اخبار حول الروبوتات المستخدمة فى المصانع خطوط الانتاج وتجميعىالسيارات والالكتلرونيات .",
+    },
+    {
+      title: "الروبوتات الطبية      ",
+      image: "sa.PNG",
+      body: " كل مايخص الروبوتات الجراحية وربوتات التمريض و المساعدة في الرعاية الصحية   .",
+    },
+    {
+      title: "الروبوتات المنزلية    ",
+      image: "BET.PNG",
+      body: "     روبوتات التنضيف والطبخ المساعدة في الاعمال اليومية او الروبوتات الشخصية الذكية.",
+    },
+    {
+      title: "   الروبوتات العسكرية او الامنية",
+      image: "AMNI.PNG",
+      body: " التطورات في الروبوتات الاستطلاع الطائرات بدون طيار واتظمة الدفاع الذكية .",
+    },
+    {
+      title: "   الروبوتات التعليمية ",
+      image: "TICH.PNG",
+      body: " تستخدم في التعليم والتدريب وتطوير مهارات البرمجة للاطفال والطلاب.",
+    },
+    {
+      title: " الروبوتات الفضائية   ",
+      image: "ZO.jPG",
+      body: " تستخدم في اكتشاف الفضاءمثل روبوتات مركبات المريخ .",
+    },
+    {
+      title: " الذكاء الاصطناعي     ",
+      image: "GBT.PNG",
+      body: "  اخبار عن تطورات الخوارزميات التحكم الرؤية الحاسوبية والتعلم الالي التستخدم في توجيه الربوتات  .",
+    },
+    {
+      title: "OpenAI تطلق أداة ذكاء اصطناعي للمبرمجين",
+      image: "GB.PNG",
+      body: "الأداة الجديدة تساعد المطورين على كتابة الأكواد وتصحيحها تلقائيًا باستخدام تحليل اللغة.",
+    },
+  ],
+  phones: [
+    {
+      title: "appel تصل لقيمة سوقية ضخمة ",
+      image: "apple logo.JPG",
+      body: "هذا الامر يدل على ان رغم المنافسة الشديدة نجحت في اعادة تنشيط مبيعات الهواتف لديها  وهو امر يعد مؤشرا مهما لسوق الهواتف الذكية",
+    },
+
+     {
+      title: "   appel  ",
+      image: "apple logo.JPG",
+      body: "تجاوزت قيمة شركتها السوقية 4 تريليون دولار لاول مرة  , بفضل الطلب القوي على احدث موديلات ايفون",
+    },
+    {
+      title: "iphonee 17pr0 max ",
+      image: "ip.PNG",
+      body: "تقرير حديث يقول ان افضل هاتف من حيث الكاميرا في 2025 هو apple iphone 17 pro max",
+    },
+    {
+      title: "honor    ",
+      image: "ho.PNG",
+      body: " تخطط لاطلاق  هاتفين قريبا بتقنية بطارية 10000 تقريبا سيليكون كربون بسعة.",
+    },
+    {
+      title: "   samsung Electronics  ",
+      image: "E.JPG",
+      body: "  اضافت دعما للغة الجديدة في منصة الذكاء الاصطناعي  الخاصة بها  جالكسي ال حيث اصبحت تدعم حاليا 22 لغة باضافت الغوجارتية والفلبينية مؤخرا     .",
+    },
+    {
+      title: "   samsung week   ",
+      image: "W.JPG",
+      body: "    ايضا الشركة اطلقت فعالية 2025 في اكثر من 65 دولة من 20  اكتوبر الى 1 نوفمبر مع عروضوحوافز للمنتجات ضمن سلسة جالكسي وغيرها.",
+    },
+    {
+      title: "   tecno pova curve    ",
+      image: "",
+      body: "         تم الاطلاق عنه مؤخرا في الهند مع تصميم منحني معالج midia tek demensity 7300 ultra.",
+    },
+    {
+      title: "هاتف سامسونغ الجديد Galaxy Z Fold7 بميزات مذهلة",
+      image: "z.JPG",
+      body: "تصميم أنيق وقابل للطي مع أداء قوي وبطارية محسنة تدوم طويلاً.",
+    },
+  ],
+  innovation: [
+    {
+      title: "    الحوسبةالكمومية",
+      image: "XR.PNG", 
+      body: "   انظمة حاسوبية قادرة على معالجة مشاكل معقدة اسرع بكتير من الحواسيب التقليدية.",
+    },
+    {
+      title: "الواقع الممتد",
+      image: "GG.PNG",
+      body: "دمج الواقع الافتراضي والواقع المعززوالواقع المختلط, تجربة رقمية او فيزيائية تعزز التفاعل في التعليم والترقية في العمل.",
+    },
+    {
+      title: "    الذكاء الاصطناعي على الحافلة",
+      image: "ABA.PNG",
+      body: " تشغيل نماذج ذكاء الاصطناعي مباشرةعلى الاجهزة او في نقاط قرب المستخدم مايقلل الاعتماد على السحابة ويسرع الاستجابة.",
+    },
+    {
+      title: "الحوسبة المكانية ",
+      image: "SABA.PNG",
+      body: "تقنية تعتمد على الدمج الحسي للمكان والبيئة مع المعلومات الرقمية ممايغير طريقة تعامل مع التكنولوجبا.",
+    },
+    {
+      title: "الشم الالي",
+      image: "CHAM.PNG",
+      body: "المستشعرات البيولوجيا مع الذكاء الاصطناعي لتمكين اجهزة من شم الروائح وتعريفها بدقة عالية واستخداماتها تشمل الطب والبيئة والامن.",
+    },
+    {
+      title: "شبكات الجيل الخامس ",
+      image: "CHA.PNG",
+      body: " البنية التحتية للاتصال عالية والسرعة والعرض والتردد التى تدعم انترنت الاشياء التصتبع الذكي والتنقل الالي.",
+    },
+    {
+      title: "الاتمتة ",
+      image: "ATMA.PNG",
+      body: " انظمة ذكيةتؤدي مهاها كانت للبشر وتستخدم في التصنيع والخدمات اللوجستية وادارة العمليات .",
+    },
+    {
+      title: "التكنولوجيا الحديثة والتقنيات المستدامة ",
+      image: "TB.PNG",
+      body: " ابتكارات فى الزراعة والزيوت الحيوية والمواد القابلة للتحليل تلبية لمتطلبات البيئة والاستدامة.",
+    },
+  ]
+};
+
+const container = document.getElementById("news-container");
+const modal = document.getElementById("news-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalImg = document.getElementById("modal-img");
+const modalBody = document.getElementById("modal-body");
+const closeModal = document.getElementById("close-modal");
+
+const navLinks = document.querySelectorAll(".nav-link");
+
+// تحميل الأخبار الافتراضية
+renderNews("home");
+
+// تغيير القسم عند النقر
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    navLinks.forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+    const category = link.dataset.category;
+    renderNews(category);
+  });
+});
+
+function renderNews(category) {
+  container.innerHTML = "";
+  if (!newsData[category]) return;
+  newsData[category].forEach(news => {
+    const card = document.createElement("div");
+    card.className = "news-card";
+    card.innerHTML = `
+      <img src="${news.image}" alt="${news.title}">
+      <div class="content">
+        <h3>${news.title}</h3>
+        <p>${news.body.substring(0, 80)}...</p>
+      </div>
+    `;
+    card.addEventListener("click", () => openModal(news));
+    container.appendChild(card);
+  });
+}
+
+function openModal(news) {
+  modalTitle.textContent = news.title;
+  modalImg.src = news.image;
+  modalBody.textContent = news.body;
+  modal.style.display = "block";
+}
+
+closeModal.onclick = () => (modal.style.display = "none");
+window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+</script>
+</body>
+</html>
+
